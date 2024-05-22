@@ -1,8 +1,22 @@
-# React + Vite
+## To-Do List App
+This is a simple to-do list application built with React. It allows you to create, update, and delete tasks.
+### Features
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+* Add new tasks with titles.
+* Update existing tasks by editing their titles.
+* Delete tasks from the list.
 
-Currently, two official plugins are available:
+## Usage
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Enter the desired task title in the input field.
+2. Click the "Add Task" button to create a new task.
+3. Click on the "Edit" button for an existing task to edit its title.
+4. Click on the "Update" button to save the changes made to the task title.
+5. Click on the "Delete" button for an existing task to remove it from the list.
+### Technologies Used
+
+* React
+* JavaScript (JSX)
+### Contributing
+
+Feel free to fork this repository and contribute by adding new features or fixing bugs. Please create a pull request with your changes.
