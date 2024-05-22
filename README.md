@@ -1,5 +1,5 @@
 ## To-Do List App
-!["To-Do List App Screenshot"](Screenshot to do list.png)
+!["To-Do List App Screenshot"](Screenshot.png)
 
 
 This is a simple to-do list application built with React. It allows you to create, update, and delete tasks.
