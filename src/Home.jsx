@@ -1,7 +1,9 @@
 import { useState } from "react";
-import "./App.css";
+import { Submit } from "./Submit";
+import { Listing } from "./list";
+import { Title } from "./Head";
 
-function App() {
+export const Home = () => {
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState([]);
   const [editMode, setEditMode] = useState(false);
@@ -9,13 +11,11 @@ function App() {
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
-  }; //When the value is inserted the title note is on the title variable
+  };
 
   const handleSubmit = (event) => {
-    //Clicked on submit/update button
     event.preventDefault();
     if (title.trim() === "") {
-      // make sure user dont submit with empty insert
       return alert("Enter Something valid");
     }
 
@@ -55,37 +55,23 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    setNotes(notes.filter((e) => e.id !== id)); // Strict comparison
+    setNotes(notes.filter((e) => e.id !== id));
   };
 
   return (
-    <div className="app">
-      <h1 className="header">Create your to do list</h1>
-      <form onSubmit={handleSubmit} className="input">
-        <input
-          className="inside"
-          type="text"
-          onChange={handleTitleChange}
-          value={title}
-          placeholder="Enter the task"
-        />
-        <button type="submit">{editMode ? "Update" : "Add Task"}</button>
-      </form>
-      <div className="output">
-        <ul>
-          {notes.map((list) => (
-            <li key={list.id}>
-              <strong className="title">{list.title}</strong>
-              <div className="btn-mini">
-                <button onClick={() => handleUpdate(list)}>Edit</button>
-                <button onClick={() => handleDelete(list.id)}>Delete</button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className="home">
+      <Title />
+      <Submit
+        handleSubmit={handleSubmit}
+        handleTitleChange={handleTitleChange}
+        editMode={editMode}
+        title={title}
+      />
+      <Listing
+        notes={notes}
+        handleDelete={handleDelete}
+        handleUpdate={handleUpdate}
+      />
     </div>
   );
-}
-
-export default App;
+};
