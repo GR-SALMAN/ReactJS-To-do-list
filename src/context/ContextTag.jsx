@@ -4,7 +4,7 @@ import React from "react";
 import { Home } from "../Home";
 import { ContextTag } from "./ContextProvide";
 
-export const contextProvider = (props) => {
+export const ContextProvider = (props) => {
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState([]);
   const [editMode, setEditMode] = useState(false);
