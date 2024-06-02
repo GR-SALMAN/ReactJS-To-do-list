@@ -1,4 +1,10 @@
-export const Listing = ({ notes, handleDelete, handleUpdate }) => {
+import { useContext } from "react";
+import { ContextTag } from "./context/ContextProvide";
+ContextTag;
+
+useContext;
+export const Listing = () => {
+  const { notes, handleDelete, handleUpdate } = useContext(ContextTag);
   return (
     <>
       <div className="output">
