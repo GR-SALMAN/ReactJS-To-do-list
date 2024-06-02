@@ -1,2 +1,2 @@
-import react, { useContext } from "react";
-export const ContextTag = useContext();
+import react, { createContext, useContext } from "react";
+export const ContextTag = createContext();

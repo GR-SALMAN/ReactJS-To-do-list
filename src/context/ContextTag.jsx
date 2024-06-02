@@ -59,7 +59,7 @@ export const contextProvider = (props) => {
     setNotes(notes.filter((e) => e.id !== id));
   };
 
-  const Everything = [
+  const everything = {
     title,
     setTitle,
     notes,
@@ -74,9 +74,9 @@ export const contextProvider = (props) => {
     createHandle,
     updateMode,
     handleUpdate,
-  ];
+  };
   return (
-    <ContextTag.Provider value={Everything}>
+    <ContextTag.Provider value={everything}>
       {props.children}
     </ContextTag.Provider>
   );
