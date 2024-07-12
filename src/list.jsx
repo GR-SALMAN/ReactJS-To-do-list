@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ContextTag } from "./context/ContextProvide";
+import { ContextTag } from "./context/CreateContext";
 ContextTag;
 
 useContext;

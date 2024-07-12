@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ContextTag } from "./context/ContextProvide";
+import { ContextTag } from "./context/CreateContext";
 useContext;
 ContextTag;
 export const Submit = () => {
@@ -15,7 +15,7 @@ export const Submit = () => {
           value={title}
           placeholder="Enter the task"
         />
-        <button type="submit">{editMode ? "Upodate" : "Add Task"}</button>
+        <button type="submit">{editMode ? "Update" : "Add Task"}</button>
       </form>
     </>
   );

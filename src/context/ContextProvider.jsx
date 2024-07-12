@@ -2,7 +2,7 @@ import react, { useContext, useState } from "react";
 Home;
 import React from "react";
 import { Home } from "../Home";
-import { ContextTag } from "./ContextProvide";
+import { ContextTag } from "./CreateContext";
 
 export const ContextProvider = (props) => {
   const [title, setTitle] = useState("");
