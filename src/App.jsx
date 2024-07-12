@@ -1,61 +1,94 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import "./App.css";
 
+// Define action types
+const ADD_NOTE = "ADD_NOTE";
+const UPDATE_NOTE = "UPDATE_NOTE";
+const DELETE_NOTE = "DELETE_NOTE";
+const SET_TITLE = "SET_TITLE";
+const SET_EDIT_MODE = "SET_EDIT_MODE";
+const SET_UPDATE_TITLE = "SET_UPDATE_TITLE";
+
+// Define the initial state
+const initialState = {
+  title: "",
+  notes: [],
+  editMode: false,
+  updateTitle: null,
+};
+
+// Define the reducer function
+function reducer(state, action) {
+  switch (action.type) {
+    case ADD_NOTE:
+      return {
+        ...state,
+        notes: [...state.notes, { id: Date.now(), title: state.title }],
+        title: "",
+      };
+    case UPDATE_NOTE:
+      return {
+        ...state,
+        notes: state.notes.map((note) =>
+          note.id === state.updateTitle.id
+            ? { ...note, title: state.title }
+            : note
+        ),
+        title: "",
+        editMode: false,
+        updateTitle: null,
+      };
+    case DELETE_NOTE:
+      return {
+        ...state,
+        notes: state.notes.filter((note) => note.id !== action.payload),
+      };
+    case SET_TITLE:
+      return {
+        ...state,
+        title: action.payload,
+      };
+    case SET_EDIT_MODE:
+      return {
+        ...state,
+        editMode: action.payload,
+      };
+    case SET_UPDATE_TITLE:
+      return {
+        ...state,
+        updateTitle: action.payload,
+        title: action.payload.title,
+      };
+    default:
+      return state;
+  }
+}
+
 function App() {
-  const [title, setTitle] = useState("");
-  const [notes, setNotes] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  const [updateTitle, setUpdateTitle] = useState(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  }; //When the value is inserted the title note is on the title variable
+    dispatch({ type: SET_TITLE, payload: event.target.value });
+  };
 
   const handleSubmit = (event) => {
-    //Clicked on submit/update button
     event.preventDefault();
-    if (title.trim() === "") {
-      // make sure user dont submit with empty insert
+    if (state.title.trim() === "") {
       return alert("Enter Something valid");
     }
 
-    editMode === true ? updateMode() : createHandle();
+    state.editMode
+      ? dispatch({ type: UPDATE_NOTE })
+      : dispatch({ type: ADD_NOTE });
   };
 
-  function createHandle() {
-    const obj = {
-      id: Date.now(),
-      title,
-    };
-    setNotes([...notes, obj]);
-    setTitle("");
-  }
-
-  function updateMode() {
-    let updateNoteList = notes.map((note) => {
-      if (note.id == updateTitle.id) {
-        return {
-          ...notes,
-          title: title,
-        };
-      }
-      return note;
-    });
-
-    setNotes(updateNoteList);
-    setEditMode(false);
-    setUpdateTitle(null);
-    setTitle("");
-  }
-
   const handleUpdate = (list) => {
-    setEditMode(true);
-    setUpdateTitle(list);
-    setTitle(list.title);
+    dispatch({ type: SET_EDIT_MODE, payload: true });
+    dispatch({ type: SET_UPDATE_TITLE, payload: list });
   };
 
   const handleDelete = (id) => {
-    setNotes(notes.filter((e) => e.id !== id)); // Strict comparison
+    dispatch({ type: DELETE_NOTE, payload: id });
   };
 
   return (
@@ -66,14 +99,14 @@ function App() {
           className="inside"
           type="text"
           onChange={handleTitleChange}
-          value={title}
+          value={state.title}
           placeholder="Enter the task"
         />
-        <button type="submit">{editMode ? "Update" : "Add Task"}</button>
+        <button type="submit">{state.editMode ? "Update" : "Add Task"}</button>
       </form>
       <div className="output">
         <ul>
-          {notes.map((list) => (
+          {state.notes.map((list) => (
             <li key={list.id}>
               <strong className="title">{list.title}</strong>
               <div className="btn-mini">
