@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import "./App.css";
 
-// Define action types
+// I Defined action types as a variable to use it better
 const ADD_NOTE = "ADD_NOTE";
 const UPDATE_NOTE = "UPDATE_NOTE";
 const DELETE_NOTE = "DELETE_NOTE";
@@ -9,7 +9,7 @@ const SET_TITLE = "SET_TITLE";
 const SET_EDIT_MODE = "SET_EDIT_MODE";
 const SET_UPDATE_TITLE = "SET_UPDATE_TITLE";
 
-// Define the initial state
+// Define the initial state data
 const initialState = {
   title: "",
   notes: [],
