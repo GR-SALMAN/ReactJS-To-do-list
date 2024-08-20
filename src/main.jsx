@@ -1,15 +1,14 @@
+import React from "react";
 import ReactDOM from "react-dom/client";
-import { Home } from "./Home";
+import App from "./App.jsx";
 import "./index.css";
+import { Provider } from "react-redux";
+import store from "./store/index.js";
 import "./Home.css";
-import { ContextProvider } from "./context/ContextProvider";
-// import { ContextTag } from "./context/ContextProvide";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <ContextTag>
-
-  // </ContextTag>
-
-  <ContextProvider>
-    <Home />
-  </ContextProvider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
 );
