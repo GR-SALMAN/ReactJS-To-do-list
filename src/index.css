@@ -34,3 +34,7 @@ button {
 #root {
   margin-top: 50px;
 }
+
+li {
+  transition: all 6s ease; /* Adjust the duration as needed */
+}
